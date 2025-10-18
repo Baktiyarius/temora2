@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TÉMORA STUDIO — Студия красоты</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+    <div class="loading-text">Загрузка…</div>
+  </div>
+
+  <header class="topnav">
+    <div class="brand">
+      <img id="logo" src="logo.png" alt="TÉMORA STUDIO" onerror="this.style.display='none'" />
+      <div class="brand-text">TÉMORA STUDIO</div>
+    </div>
+    <button id="hamburger" class="hamburger" aria-label="Меню">☰</button>
+    <nav class="nav-main">
+      <a href="#" data-target="home" class="nav-link active">Главная</a>
+      <a href="#" data-target="price" class="nav-link">Прайс</a>
+      <a href="#" data-target="booking" class="nav-link">Запись</a>
+      <a href="#" data-target="profile" class="nav-link">Профиль</a>
+      <a href="#" data-target="admin" class="nav-link admin-link" style="display:none">Админка</a>
+    </nav>
+    <div class="auth-controls">
+      <span id="greeting" class="greeting"></span>
+      <button id="btn-logout" class="btn danger" style="display:none">Выйти</button>
+      <button id="btn-login" class="btn primary">Войти / Регистрация</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="section">
+      <div class="hero card">
+        <div class="hero-content">
+          <h1 id="welcome-title">Добро пожаловать в TÉMORA STUDIO</h1>
+          <p class="lead">Премиум-уход в тёплой атмосфере. Запишитесь онлайн — мы позаботимся о вашей красоте.</p>
+          <div class="hero-actions"><a href="#" data-target="booking" class="btn primary">Записаться</a></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true"> <!-- placeholder visual -->
+          <img src="hero.jpg" alt="" onerror="this.style.display='none'" />
+        </div>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card card">
+          <div class="icon">👁️</div>
+          <h3>Ресницы</h3>
+          <p>Наращивание, коррекция и ламинирование ресниц различными техниками.</p>
+        </div>
+        <div class="service-card card">
+          <div class="icon">🪄</div>
+          <h3>Брови</h3>
+          <p>Коррекция, окрашивание, перманент и ламинирование бровей.</p>
+        </div>
+        <div class="service-card card">
+          <div class="icon">💅</div>
+          <h3>Маникюр</h3>
+          <p>Комбинированный маникюр, гель-лак, наращивание и педикюр.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="price" class="section" style="display:none">
+      <h2>Прайс — TÉMORA STUDIO</h2>
+      <div id="price-content"></div>
+    </section>
+
+    <section id="booking" class="section" style="display:none">
+      <h2>Запись</h2>
+      <div class="card">
+        <form id="booking-form">
+          <div class="form-row">
+            <label>Имя
+              <input id="booking-name" placeholder="Ваше имя" required />
+            </label>
+            <label>Телефон
+              <input id="booking-phone" placeholder="Номер телефона" required />
+            </label>
+          </div>
+          <label>Мастер
+            <select id="booking-master"></select>
+          </label>
+          <label>Услуга
+            <select id="booking-service"></select>
+          </label>
+          <div class="form-row">
+            <label>Дата
+              <input type="date" id="booking-date" required />
+            </label>
+            <label>Время
+              <select id="booking-time"></select>
+            </label>
+          </div>
+          <div class="price-row">Цена: <span id="booking-price">0₸</span></div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Записаться</button>
+            <div id="booking-message" class="muted"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="profile" class="section" style="display:none">
+      <h2>Профиль</h2>
+      <div class="card profile-card">
+        <div class="profile-info">
+          <label>Имя <input id="profile-name" /></label>
+          <label>Email <input id="profile-email" disabled /></label>
+          <label>Телефон <input id="profile-phone" /></label>
+          <div class="profile-actions">
+            <button id="save-profile" class="btn primary">Сохранить</button>
+            <button id="delete-account" class="btn danger">Удалить аккаунт</button>
+          </div>
+        </div>
+        <div class="profile-records">
+          <h3>История записей</h3>
+          <div id="profile-records-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin" class="section" style="display:none">
+      <h2>Админка</h2>
+      <div class="card admin-grid">
+        <div>
+          <h3>Пользователи</h3>
+          <div id="admin-users"></div>
+        </div>
+        <div>
+          <h3>Записи</h3>
+          <div id="admin-records"></div>
+        </div>
+        <div>
+          <h3>Мастера и услуги</h3>
+          <div id="admin-masters"></div>
+          <button id="admin-add-master" class="btn">Добавить мастера</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container card">
+      <div class="footer-grid">
+        <div>
+          <h4>TÉMORA STUDIO</h4>
+          <p>Адрес: ул. Примерная, 12<br>Телефон: +7 (777) 123-45-67</p>
+        </div>
+        <div>
+          <h4>Часы работы</h4>
+          <p>Пн–Вс: 09:00 — 19:00</p>
+        </div>
+        <div>
+          <h4>Социальные сети</h4>
+          <p>Instagram / Telegram / WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal login/register -->
+  <div id="auth-modal" class="modal" style="display:none">
+    <div class="modal-content card">
+      <h3 id="auth-title">Вход / Регистрация</h3>
+      <form id="auth-form">
+        <label>Имя <input id="auth-name" required /></label>
+        <label>Email <input id="auth-email" type="email" required /></label>
+        <label>Пароль <input id="auth-password" type="password" required /></label>
+        <label>Телефон <input id="auth-phone" /></label>
+        <div class="modal-actions">
+          <button type="submit" class="btn primary">Продолжить</button>
+          <button type="button" id="auth-close" class="btn">Отмена</button>
+        </div>
+        <div class="muted small">Для входа администратора используйте email: <strong>admin@temora.kz</strong></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin login modal (replaces prompt) -->
+  <div id="admin-modal" class="modal" style="display:none">
+    <div class="modal-content card">
+      <h3>Вход в админку</h3>
+      <form id="admin-form">
+        <label>Пароль <input id="admin-password" type="password" required /></label>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn primary" type="submit">Войти</button>
+          <button type="button" id="admin-cancel" class="btn">Отмена</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirm modal -->
+  <div id="confirm-modal" class="modal" style="display:none">
+    <div class="modal-content card">
+      <p id="confirm-text">Подтвердите действие</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button id="confirm-yes" class="btn primary">Да</button>
+        <button id="confirm-no" class="btn">Нет</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
